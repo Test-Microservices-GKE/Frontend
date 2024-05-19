@@ -21,12 +21,19 @@ const App = () => {
     // Fetch videos
     
   }, [apiCommentUrl]);
+  const fetchComments = async () => {
+    const response = await fetch(`${REACT_APP_API_URL}/comment`);
+    return response.json();
+  };
+  console.log(fetchComments);
+  
   console.log(comments)
   return (
     <div>
       <h1>API Data</h1>
       <h2>Comments</h2>
       <pre>{JSON.stringify(comments, null, 2)}</pre>
+
     </div>
   );
 };
