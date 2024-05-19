@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
-function App() {
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const apiCommentUrl = apiUrl + '/comment';
-  const apiVideoUrl = apiUrl + '/video';
-  console.log(apiUrl);
-  console.log(apiCommentUrl);
-  console.log(apiVideoUrl);
+import React, { useEffect, useState } from 'react';
 
+const App = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiCommentUrl = `${apiUrl}/comment`;
+  const apiVideoUrl = `${apiUrl}/video`;
+
+  const [comments, setComments] = useState(null);
+  const [videos, setVideos] = useState(null);
+  console.log(apiCommentUrl)
+  useEffect(() => {
+    // Fetch comments
+    fetch(apiCommentUrl)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Comments:', data);
+        setComments(data);
+      })
+      .catch(error => console.error('Error fetching comments:', error));
+
+    // Fetch videos
+    
+  }, [apiCommentUrl]);
+  console.log(comments)
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
+    <div>
+      <h1>API Data</h1>
+      <h2>Comments</h2>
+      <pre>{JSON.stringify(comments, null, 2)}</pre>
     </div>
   );
-}
-
-
+};
 
 export default App;
