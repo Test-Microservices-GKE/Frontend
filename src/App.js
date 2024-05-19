@@ -22,10 +22,17 @@ const App = () => {
     
   }, [apiCommentUrl]);
   const fetchComments = async () => {
-    const response = await fetch(`${REACT_APP_API_URL}/comment`);
-    return response.json();
+      const response = await fetch(`${REACT_APP_API_URL}/comment`);
+      if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          return data;
+      } else {
+          console.error('Fetch error:', response.statusText);
+      }
   };
-  console.log(fetchComments);
+
+  fetchComments();
   
   console.log(comments)
   return (
