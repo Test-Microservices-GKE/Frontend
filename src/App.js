@@ -35,7 +35,7 @@ const App = () => {
 
   fetchComments();
   const fetchComments2 = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL2}/comment/`);
     // const response = await fetch('http://localhost:8080/comment/')
       if (response.ok) {
           const data = await response.json();
